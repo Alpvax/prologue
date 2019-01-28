@@ -1,0 +1,26 @@
+{
+  "name": "drykenspel-prologue",
+  "version": "0.1.0",
+  "description": "Don't need a readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drykenspel/prologue.git"
+  },
+  "contributors": [
+    "Alpvax <development@alpvax.uk>",
+    "Trymunx <trymunx@gmail.com>"
+  ],
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Drykenspel/prologue/issues"
+  },
+  "homepage": "https://github.com/Drykenspel/prologue#readme",
+  "dependencies": {
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.4"
+  }
+}
