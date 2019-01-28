@@ -1,0 +1,5 @@
+damage:
+  require:
+    attributes ? attr.health
+  how it works:
+    equipped items are buffed by whatever equips them, giving them a damage total. Then when the collision of weapon/shield/whatever with other entity happens, they deal whatever damage they have. This means e.g. system knows how much damage an arrow will do while flying through the air.

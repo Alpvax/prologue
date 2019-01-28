@@ -1,0 +1,12 @@
+health
+  max, regen
+  reductions -- armours, resistances and evasion
+mana
+  max, regen, cost multipliers
+
+stamina
+  // stamina that drains during fighting/climbing/running/swimming etc. (activities), drains slowly, regens quickly while resting.
+  max, regen (resting buff)
+fatigue
+  // debuff for stamina regen, max stamina, strength, intelligence, etc. restored by sleeping
+  rises (depending on stamina drain and time)

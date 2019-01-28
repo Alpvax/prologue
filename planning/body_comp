@@ -1,0 +1,8 @@
+torso (body):
+  head(s):
+    equipment slot,
+    health?
+  arm(s):
+    hand(s):
+  leg(s):
+    foot(s):

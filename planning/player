@@ -1,0 +1,26 @@
+player:
+  skills:     Map(String -> entity),
+  stats:      Map(String -> entity),
+  attributes: Map(String -> entity),
+  position:   position_comp,
+  inventory:  Array [entity],
+  velocity:   vel_comp,
+  equipment:  Map(String -> [entity]),
+  body:       body_comp,
+  buffable,
+  control:    ctrl_comp,
+  friendly,
+  targeted_aoe_etc,
+
+type Entity: number;
+type Entity = {...Components}
+
+Player: Entity {
+  stats: {
+    health: Entity {
+      AttributeComp: {
+                
+      }
+    }
+  }
+}

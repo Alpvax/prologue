@@ -1,0 +1,55 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {},
+  "rules": {
+    "indent": {
+      "options": ["spaces", 2]
+    },
+    "linebreak-style": {
+      "options": ["LF"]
+    },
+    "quotemark": {
+      "options": ["double", "avoid-escape"]
+    },
+    "max-line-length": {
+      "options": [100],
+      "severity": "warn"
+    },
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "trailing-comma": {
+      "options": {
+        "multiline": {
+          "objects": "always",
+          "arrays": "always",
+          "functions": "never",
+          "typeLiterals": "ignore"
+        },
+        "singleline": "never"
+      }
+    },
+    "space-within-parens": [true, 0],
+    "space-before-function-paren": false,
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      },
+      {
+        "call-signature": "space",
+        "index-signature": "space",
+        "parameter": "space",
+        "property-declaration": "space",
+        "variable-declaration": "space"
+      }
+    ],
+    "typedef": true,
+    "interface-name": false,
+    "no-console": false
+  },
+  "rulesDirectory": []
+}
