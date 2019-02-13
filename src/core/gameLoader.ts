@@ -1,5 +1,9 @@
 import EventBus, {Event} from "../util/AsyncEventBus";
-import IContentProvider from "./IContentProvider";
+import IContentProvider, { IScriptLoader } from "./IContentProvider";
+
+import scriptLoader from "../util/NodeScriptLoader";
+/* TODO:if (this.window === this )
+import scriptLoader from "../util/BrowserScriptLoader";*/
 
 const LOADING_BUS = new EventBus();
 
@@ -12,7 +16,7 @@ const registryEvents = {
 Object.values(registryEvents).forEach((e) => LOADING_BUS.registerEvent(e));
 
 async function loadContentProviders() {
-  let contentProviders: Array<IContentProvider> = []; // TODO: load content providers
+  let contentProviders: Array<IContentProvider> = await scriptLoader.loadFromDir("../../providers", /cp_(\w+)\.[tj]s/i);
   await Promise.all(contentProviders.filter((cp) => cp.init).map((cp) => cp.init!(LOADING_BUS)));
 
   let [systems, components, templates] = await Promise.all([
