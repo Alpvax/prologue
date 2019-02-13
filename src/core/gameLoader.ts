@@ -26,3 +26,5 @@ async function loadContentProviders() {
   Components:\t${components}
   Templates:\t${templates}`);
 }
+
+loadContentProviders();

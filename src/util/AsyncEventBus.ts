@@ -23,7 +23,7 @@ export default class EventBus {
     if (this.events.has(event.name)) {
       throw new Error(`Attempting to define multiple events with same name: "${event.name.toString()}"`)
     }
-    this.events.set(name, event);
+    this.events.set(event.name, event);
     if (this.unregisteredEventListeners.has(event.name)) {
       this.unregisteredEventListeners.get(event.name)!.forEach((l) => event.on(l));
     }
