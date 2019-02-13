@@ -1,9 +1,20 @@
 import {Entity} from "./GameObjectManager";
+import {ComponentTemplate} from "./Template"
 
-export interface Component {
+interface IComponent {}
+const Component: ComponentConstructor = class Component implements IComponent{
+  constructor(name: string) {
+    ComponentDB.set(name, <ComponentConstructor>this.constructor)
+  }
+  static buildTemplate(templateDefinition: any): ComponentTemplate {
 
+  }
+}
+export default Component;
+
+interface ComponentConstructor {
+  new (name: string): IComponent;
+  buildTemplate: (templateDefinition: any) => () => IComponent
 }
 
-export default interface ComponentConstructor {
-  new (templateDefinition: object): Component;
-}
+export const ComponentDB: Map<string, ComponentConstructor> = new Map();

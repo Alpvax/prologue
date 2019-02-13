@@ -22,5 +22,8 @@
   "dependencies": {
     "tslint": "^5.12.1",
     "typescript": "^3.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^11.9.0"
   }
 }
