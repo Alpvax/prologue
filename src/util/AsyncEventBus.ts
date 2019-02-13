@@ -25,7 +25,7 @@ export default class EventBus {
     }
     this.events.set(name, event);
     if (this.unregisteredEventListeners.has(event.name)) {
-      this.unregisteredEventListeners.get(event.name).forEach((l) => event.on(l));
+      this.unregisteredEventListeners.get(event.name)!.forEach((l) => event.on(l));
     }
     return this;
   }
@@ -48,7 +48,7 @@ export default class EventBus {
         if (!this.unregisteredEventListeners.has(name)) {
           this.unregisteredEventListeners.set(name, []);
         }
-        this.unregisteredEventListeners.get(name).push(listener);
+        this.unregisteredEventListeners.get(name)!.push(listener);
       });
     return this;
   }

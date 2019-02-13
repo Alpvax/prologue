@@ -1,5 +1,28 @@
-import fs from "fs";
-import System from "./System";
+import EventBus, {Event} from "../util/AsyncEventBus";
+import IContentProvider from "./IContentProvider";
 
+const LOADING_BUS = new EventBus();
 
-async function loadContentProviders()
+const registryEvents = {
+  system: new Event<void, any>("register_system"),
+  component: new Event<void, any>("register_component"),
+  template: new Event<void, any>("register_template"),
+};
+
+Object.values(registryEvents).forEach((e) => LOADING_BUS.registerEvent(e));
+
+async function loadContentProviders() {
+  let contentProviders: Array<IContentProvider> = []; // TODO: load content providers
+  await Promise.all(contentProviders.filter((cp) => cp.init).map((cp) => cp.init!(LOADING_BUS)));
+
+  let [systems, components, templates] = await Promise.all([
+    registryEvents.system.emit(),
+    registryEvents.component.emit(),
+    registryEvents.template.emit(),
+  ]);
+
+  console.log(`LOADED:
+  Systems:\t${systems}
+  Components:\t${components}
+  Templates:\t${templates}`);
+}
