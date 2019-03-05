@@ -24,6 +24,8 @@
     "typescript": "^3.2.4"
   },
   "devDependencies": {
-    "@types/node": "^11.9.0"
+    "@types/node": "^11.9.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "webpack": "^4.29.6"
   }
 }
