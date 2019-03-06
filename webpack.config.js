@@ -2,6 +2,8 @@ const path = require("path");
 
 module.exports = {
   entry: "./src/core/gameLoader.ts",
+  mode: "development",
+  target: "node",
   module: {
     rules: [
       {
@@ -12,7 +14,12 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [ ".tsx", ".ts", ".js" ]
+    extensions: [ ".tsx", ".ts", ".js" ],
+    modules: [
+      path.resolve("src"),
+      path.resolve("node_modules"),
+      path.resolve("providers")
+    ]
   },
   output: {
     filename: "bundle.js",

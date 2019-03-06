@@ -10,11 +10,12 @@
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
+    //"resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve"
   },
-  "include": ["src"],
+  "files": ["src/core/gameLoader.ts", "providers"],
+  //"include": ["src"],
   "compileOnSave": true
 }
