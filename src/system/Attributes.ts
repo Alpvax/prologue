@@ -3,10 +3,6 @@ import {Entity} from "../core/GameObjectManager";
 let attributeDefs = new Map<string, AttributeDefinition>();
 
 
-function defSorter(a: AttributeDefinition, b: AttributeDefinition): -1 | 0 | 1 {
-  return 0;//TODO
-}
-
 type baseProperty = number | ((attValues: object) => number);
 
 interface AttDef {

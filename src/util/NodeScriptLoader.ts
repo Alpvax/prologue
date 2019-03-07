@@ -8,8 +8,9 @@ const loader: IScriptLoader = {
       fs.readdir(directory, (err, files) => {
         if (err) {
           reject(err);
+        } else {
+          resolve(Promise.all(files.filter((file) => pattern.test(file)).map((file) => this.loadFile(path.join(directory, file)))));
         }
-        return resolve(Promise.all(files.filter((file) => pattern.test(file)).map((file) => this.loadFile(path.join(directory, file)))));
       });
     });
   },

@@ -23,7 +23,7 @@ async function loadContentProviders() {
   let contentProviders: Array<IContentProvider>;
   try {
     contentProviders = await scriptLoader.loadFromDir("providers", /^cp_(\w+)\.[tj]s$/i);
-    console.log("Loadeded ContentProviders:", contentProviders);
+    console.debug("Loadeded ContentProviders:", contentProviders);
     await Promise.all(contentProviders.filter((cp, i) => cp.init).map((cp) => cp.init!(LOADING_BUS)));
   } catch(err) {
     console.error("ERROR!\n", err);

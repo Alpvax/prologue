@@ -16,8 +16,9 @@ function createComponentTemplate(component: string, data: any): ComponentTemplat
 }
 
 export default function createTemplate(name: string, data: object): EntityTemplate {
-  return Object.entries(data).reduce((temp, {cname, cdata}) => {
+  return Object.entries(data).reduce((temp, [cname, cdata]) => {
     temp.components.push(createComponentTemplate(cname, cdata));
+    return temp;
   }, {
     name: name,
     components: []
