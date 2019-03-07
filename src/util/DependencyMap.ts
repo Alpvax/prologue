@@ -12,7 +12,7 @@ function isDependant<T extends DependencyNode<T>>(node: DependencyNode<T>): node
 
 type Comparator<T extends DependencyNode<T>> = (a: T, b: T) => number;
 
-class DependencyMap<K, V extends DependencyNode<V>> extends Map<K, V> {
+export default class DependencyMap<K, V extends DependencyNode<V>> extends Map<K, V> {
   private sorted: boolean = false;
   private order: Array<V> = [];
   private indexed: Map<V, number> = new Map();
@@ -51,5 +51,10 @@ class DependencyMap<K, V extends DependencyNode<V>> extends Map<K, V> {
       res.forEach(callback);
     }
     return res;
+  }
+
+  public sort(): void {
+    console.log("SORT MAP!!")//TODO: sort
+    this.sorted = true;
   }
 }

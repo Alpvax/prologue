@@ -1,28 +1,38 @@
-import EventBus, {Event} from "../util/AsyncEventBus";
+import {Events, EventBus, Event} from "../events";
 import IContentProvider, { IScriptLoader } from "./IContentProvider";
 
 import scriptLoader from "../util/NodeScriptLoader";
+/*import * as tsNode from "ts-node";
+tsNode.register({
+  compilerOptions:
+    noImplicitAny: false,
+  },
+});
 /* TODO:if (this.window === this )
 import scriptLoader from "../util/BrowserScriptLoader";*/
 
 const LOADING_BUS = new EventBus();
 
-const registryEvents = {
-  system: new Event<void, any>("register_system"),
-  component: new Event<void, any>("register_component"),
-  template: new Event<void, any>("register_template"),
-};
+LOADING_BUS.registerEvent(Events.registerSystem);
+LOADING_BUS.registerEvent(Events.registerComponent);
+LOADING_BUS.registerEvent(Events.registerTemplate);
 
-Object.values(registryEvents).forEach((e) => LOADING_BUS.registerEvent(e));
+const evt = new Event<{name:string, id: number}, string>("evt");
 
 async function loadContentProviders() {
-  let contentProviders: Array<IContentProvider> = await scriptLoader.loadFromDir("../../providers", /cp_(\w+)\.[tj]s/i);
-  await Promise.all(contentProviders.filter((cp) => cp.init).map((cp) => cp.init!(LOADING_BUS)));
+  let contentProviders: Array<IContentProvider>;
+  try {
+    contentProviders = await scriptLoader.loadFromDir("providers", /^cp_(\w+)\.[tj]s$/i);
+    console.log("Loadeded ContentProviders:", contentProviders);
+    await Promise.all(contentProviders.filter((cp, i) => cp.init).map((cp) => cp.init!(LOADING_BUS)));
+  } catch(err) {
+    console.error("ERROR!\n", err);
+  }
 
   let [systems, components, templates] = await Promise.all([
-    registryEvents.system.emit(),
-    registryEvents.component.emit(),
-    registryEvents.template.emit(),
+    Events.registerSystem.emit(null),
+    Events.registerComponent.emit(null),
+    Events.registerTemplate.emit(null),
   ]);
 
   console.log(`LOADED:

@@ -4,7 +4,7 @@ let attributeDefs = new Map<string, AttributeDefinition>();
 
 
 function defSorter(a: AttributeDefinition, b: AttributeDefinition): -1 | 0 | 1 {
-  return
+  return 0;//TODO
 }
 
 type baseProperty = number | ((attValues: object) => number);
@@ -24,7 +24,7 @@ interface StaticAttDef extends AttDef {
 
 type AttributeDefinition = DynamicAttDef | StaticAttDef
 
-async function initAttributes(eventBus: { emit: (event: string, ...args: any) => Promise<any> }/*TODO: fire register event on bus*/): Promise<Map<string, AttributeDefinition>> {
+async function initAttributes(eventBus: { emit: (event: string, ...args: Array<any>) => Promise<any> }/*TODO: fire register event on bus*/): Promise<Map<string, AttributeDefinition>> {
   let attributeDefs = new Map<string, AttributeDefinition>();
   let rootAttrs: Array<AttributeDefinition> = [];
 
@@ -39,9 +39,11 @@ async function initAttributes(eventBus: { emit: (event: string, ...args: any) =>
   }
 
   await eventBus.emit("registerAttributesEvent", registerAttributeDefinition);
-//TODO: sort
+/*TODO: sort
   let sortable = new Set(rootAttrs);
   while (sortable.size > 0) {
     let req =
   }
+*/
+  return attributeDefs;
 }

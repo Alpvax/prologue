@@ -1,4 +1,4 @@
-import EventBus from "../util/AsyncEventBus";
+import EventBus from "../events/AsyncEventBus";
 
 export default interface IContentProvider {
   /**

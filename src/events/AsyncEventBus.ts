@@ -1,18 +1,4 @@
-type EventName = string | symbol;
-
-type EventListener<DataType, ReturnType> = (data: DataType) => ReturnType | Promise<ReturnType>;
-
-export class Event<DataType, ReturnType> {
-  private listeners: Array<(data: DataType) => ReturnType | Promise<ReturnType>> = [];
-  constructor(readonly name: EventName) {}
-  public async emit(data: DataType): Promise<Array<ReturnType>> {
-    let ls: Array<ReturnType | Promise<ReturnType>> = this.listeners.map((l) => l(data));
-    return Promise.all(ls);
-  }
-  public on(listener: EventListener<DataType, ReturnType>): void {
-    this.listeners.push(listener);
-  }
-}
+import Event, {EventName, EventListener} from "./Event"
 
 export default class EventBus {
   public static readonly Event = Event;
